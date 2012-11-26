@@ -17,8 +17,8 @@
  */
 
 /* ---------------------------------------- 通用 ---------------------------------------- */
-body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, select, th, td { margin:0px; padding:0px; font-size:medium; line-height:1.5; font-family:"\5FAE\8F6F\96C5\9ED1", Helvetica; }
-body { max-width:320px; min-width:320px; margin:0px auto; background:#ffffff; -webkit-text-size-adjust:none; color:#868686; }
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, select, th, td { margin:0px; padding:0px; }
+body { background:#ffffff; -webkit-text-size-adjust:none; font-size:medium; line-height:1.5; font-family:Helvetica, sans-serif; color:#868686; }
 h1, h2, h3, h4, h5, h6, strong { font-weight:normal; }
 *{ -webkit-tap-highlight-color:rgba(0, 0, 0, 0.5); }
 ul, ol { list-style:none; }
