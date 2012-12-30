@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>收货地址</title>
+<style type="text/css">
+	* { padding:0px; margin:0px; font-size:12px; }
+	.input_line { padding:50px; }
+	.input_line select { margin-right:10px; }
+	.label_t { float:left; }
+	.input_wrap { overflow:hidden; zoom:1; }
+	.region_info { clear:both; padding:10px; margin-top:10px; border-top:1px dotted #dedede; }
+</style>
+</head>
+
+<body>
+
+<div class="input_line">
+	<label class="label_t">收货地址：</label>
+	<div class="input_wrap" id="J_region">
+
+	</div>
+	<div class="region_info" id="J_region_info">
+		<span class="province_name"></span>
+		<span class="city_name"></span>
+		<span class="county_name"></span>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="mui_lib/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="mui_lib/mui_region.js"></script>
+<script type="text/javascript" src="mui_lib/mui_delivery_address.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#J_region').region();
+	});
+</script>
+</body>
+</html>
