@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>rich editor</title>
+<style type="text/css">
+	* { margin:0px; padding:0px; font-size:12px; }
+	#editor_toolbar { padding:10px; background:#f5f7fa; overflow:hidden; }
+	#editor_toolbar span.button{ float:left; padding:4px 6px; margin-right:8px; border:1px solid #cccccc; color:#000000; text-align:center; cursor:pointer; }
+	#editor_toolbar select { float:left; width:60px; margin:2px 8px 2px 0px; }
+	#editor_textarea_wrap { padding:10px; }
+	#editor_textarea { display:block; width:98%; height:200px; padding:0.5%; line-height:2; }
+	.editor_result { padding:10px; color:#999999; }
+</style>
+</head>
+
+<body>
+
+<div id="editor_toolbar">
+	<span class="button" title="bold">加粗</span>
+	<span class="button" title="italic">斜体</span>
+	<span class="button" title="underline">下划</span>
+	<span class="button" title="justifycenter">居中</span>
+	<span class="button" title="justifyleft">居左</span>
+	<span class="button" title="justifyright">居右</span>
+	<span class="button" title="outdent">悬挂</span>
+	<span class="button" title="indent">缩进</span>
+	<span class="button" title="insertunorderedlist">无序</span>
+	<span class="button" title="insertorderedlist">有序</span>
+	<select title="fontname">
+		<option value="SimSun">宋体</option>
+		<option value="LiSu">隶书</option>
+		<option value="KaiTi_GB2312">楷体</option>
+		<option value="YouYuan">幼圆</option>
+		<option value="SimHei">黑体</option>
+		<option value="Microsoft YaHei">雅黑</option>
+		<option value="Comic Sans MS">Comic Sans MS</option>
+	</select>
+	<select title="fontsize">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+	</select>
+	<select title="forecolor">
+		<option style="color:#000000" value="#000000">■■</option>
+		<option style="color:#FF8080" value="#FF8080">■■</option>
+		<option style="color:#FFFF00" value="#FFFF00">■■</option>
+		<option style="color:#80FF00" value="#80FF00">■■</option>
+		<option style="color:#00FFFF" value="#00FFFF">■■</option>
+		<option style="color:#0000FF" value="#0000FF">■■</option>
+		<option style="color:#FF00FF" value="#FF00FF">■■</option>
+	</select>
+	<select title="backcolor">
+		<option style="color:#000000" value="#000000">■■</option>
+		<option style="color:#FF8080" value="#FF8080">■■</option>
+		<option style="color:#FFFF00" value="#FFFF00">■■</option>
+		<option style="color:#80FF00" value="#80FF00">■■</option>
+		<option style="color:#00FFFF" value="#00FFFF">■■</option>
+		<option style="color:#0000FF" value="#0000FF">■■</option>
+		<option style="color:#FF00FF" value="#FF00FF">■■</option>
+	</select>
+</div>
+<div id="editor_textarea_wrap">
+	<textarea id="editor_textarea"></textarea>
+</div>
+
+<div class="editor_result" id="J_editor_result">
+	这里是显示操作结果
+</div>
+
+
+
+
+<script type="text/javascript" src="mui_lib/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="mui_lib/mui_editor.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
