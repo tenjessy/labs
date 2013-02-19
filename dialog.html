@@ -142,39 +142,27 @@
 <script type="text/javascript" src="mui_lib/mui_dialog.js"></script>
 <script type="text/javascript">
 	$(function(){
-		// var xx = MFH.scrollbar();
-		// console.log(xx);
-
 		$.dialog({
 			tmpl : {
 				title : '美肤汇提醒您',
 				name_confirm : '是的',
 				name_cancel : '不的'
 			},
-
 			follow : '#J_dialog_2',
-
 			offsets_x : -182,
 			offsets_y : 30,
-
 			width : 400,
-
 			// fixed : false,
-
 			success : function(){
 				console.log('callback_success');
 			},
-
 			// autoclose : 2000,
-
 			callback_close : function(){
 				console.log('callback_close');
 			},
-
 			callback_confirm : function(){
 				console.log('callback_confirm');
 			},
-
 			callback_cancel : function(){
 				console.log('callback_cancel');
 			}
@@ -188,34 +176,24 @@
 					name_confirm : '是的',
 					name_cancel : '不的'
 				},
-
-				follow : 'J_dialog_2',
-
+				follow : '#J_dialog_2',
 				offsets_x : -182,
 				offsets_y : 30,
-
 				width : 400,
-
 				// fixed : false,
-
 				success : function(){
-					// console.log('callback');
+					console.log('callback_success');
 				},
-
-				autoclose : 10000,
-
+				// autoclose : 2000,
 				callback_close : function(){
 					console.log('callback_close');
 				},
-
 				callback_confirm : function(){
 					console.log('callback_confirm');
 				},
-
 				callback_cancel : function(){
 					console.log('callback_cancel');
 				}
-
 			});
 		});
 	});
