@@ -5,12 +5,15 @@
 <title>dialog</title>
 <style type="text/css">
 	* { padding:0px; margin:0px; font-size:12px; font-family:"Microsoft yahei", Arial; }
-	.ui_dialog_area { max-width:400px; margin:100px; border:3px solid rgba(0, 0, 0, 0.2); }
-	.ui_dialog_mod { border:1px solid #e5e5e5; }
+	.ui_dialog_area {
+		z-index:1000; min-width:400px; max-width:1000px; padding:3px; background-color:rgba(0, 0, 0, 0.2);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorStr=#33000000,endColorStr=#33000000);
+	}
+	.ui_dialog_mod { position:relative; z-index:999; width:400px; height:200px; background-color:#ffffff; border:1px solid #e5e5e5; }
 	.ui_dialog_mod .hd { height:34px; line-height:34px; padding:0px 10px; background-color:#f7f7f7; border-bottom:1px solid #e5e5e5; font-size:14px; }
 	.ui_dialog_mod .hd_t { font-size:14px; color:#666666; }
 	.ui_dialog_mod .bd { padding:10px; }
-	.ui_dialog_mod .ft { padding:10px; font-size:0px; text-align:right; }
+	.ui_dialog_mod .ft { position:absolute; bottom:0px; right:0px; padding:10px; font-size:0px; text-align:right; }
 	.ui_dialog_mod .ft .ui_dialog_cancel { margin-left:10px; }
 	.ui_loading { padding:10px 0px; text-align:center; color:#999999; }
 	.ui_loading .icon_loading { display:inline-block; width:18px; height:18px; margin-right:10px; vertical-align:-3px; }
@@ -32,15 +35,94 @@
 		background:-webkit-gradient(linear,center bottom,center top,from(#ececec),to(#f4f4f4));
 		background:-moz-linear-gradient(90deg,#ececec,#f4f4f4);
 	}
+	.ui_dialog_close { position:absolute; top:0px; right:0px; width:34px; height:34px; line-height:34px; color:#999999; text-decoration:none; text-align:center; }
+	.ui_dialog_close:hover { color:#666666; }
+	.ui_mask {
+		position:absolute; top:0px; left:0px; z-index:999; width:100%; height:100%; background:#000000; 
+		opacity:0.1; filter:alpha(opacity=10);
+	}
+
+
+
+
+
+
+
+.f_l{ float:left; }
+.f_r{ float:right; }
+.header{ background:#f5f5f5; height:60px; border-bottom:1px solid #e5e5e5; width:100%; }
+.header_box{ width:960px; margin:0 auto; overflow:hidden; line-height:60px; }
+.header_box .logo{ font-size:24px; font-weight:400; color:#333; height:30px; line-height:30px; float:left; border-right:2px solid #c9c9c9; margin-top:15px; padding-right:20px; }
+.header_box .sub_tit{ font-size:22px; font-weight:400; font-family:'宋体'; color:#666; height:30px; line-height:30px; overflow:hidden; margin-top:15px; float:left; padding-left:20px; }
+.header_box .f_r{ font-size:12px; margin:5px -10px 0 0; }
+.header_box .f_r a{ margin-right:10px; }
+.wrapper{ width:960px; margin:2% auto 0; padding-bottom:100px; }
+.wrapper h3{ font-size:14px; font-weight:700; color:#333; height:30px; line-height:30px; font-family:"Microsoft yahei", Arial; margin-bottom:5px; }
+.code_box{ width:960px; overflow:hidden; border-bottom:1px solid #e1e1e1; padding-bottom:20px; margin-bottom:40px; }
+.code_box pre{ width:340px; background:#f5f5f5; padding:10px 20px; font-family:"Consolas","Courier New",Courier,mono; font-size:13px; line-height:18px; border:1px solid #eee; float:left; color:#333; }
+.code_box .run{ border:1px solid; border-radius:2px; cursor:pointer; font-family:"Microsoft yahei", Arial; font-size:12px; width:50px; height:22px; line-height:22px; display:block; text-align:center; border-color:#c3c3c3; background:#ececec; color:#333; background:-webkit-gradient(linear,center bottom,center top,from(#ececec),to(#f4f4f4)); background:-moz-linear-gradient(90deg,#ececec,#f4f4f4); text-decoration:none; }
+.con_right{ width:558px; float:left; padding-left:20px; }
+.con_right p{ font-size:13px; color:#515151; margin-bottom:10px; line-height:24px; }
+
+.param_tb{ width:960px; border-collapse:collapse; border-bottom:1px solid #e1e1e1; border-left:1px solid #e1e1e1; font-size:13px; color:#333; }
+.param_tb tr td{ line-height:20px; padding:5px 0; text-align:center; border-right:1px solid #e1e1e1; border-bottom:1px solid #e1e1e1; }
+.param_tb tr .t_l{ text-align:left; padding:5px 10px; }
+.param_tb .even td{ background:#f5f5f5; }
+.param_tb th{ background:#f5f5f5; line-height:40px; border-right:1px solid #e1e1e1; font-family:"Microsoft yahei", Arial; font-size:14px; font-weight:700; border-top:2px solid #4D90F0; }
+.param_tb p{ line-height:20px; padding:5px 0; }
+
+.html_code{ margin-top:50px; }
+.html_code p{ font-size:13px; margin-bottom:10px; }
+.html_code pre{ width:918px; background:#f5f5f5; padding:10px 20px; font-family:"Consolas","Courier New",Courier,mono; font-size:13px; line-height:18px; border:1px solid #eee; color:#333; margin-bottom:20px; }
+
+#imgBox{ border:1px solid #d3d3d3; padding:5px; background:#fff; width:600px; height:375px; }
 </style>
 </head>
 
-<body>
-
-<input type="button" id="default" value="默认风格" />
+<body style="height:2000px;">
 
 
-<div class="ui_dialog_area">
+
+<div class="code_box">
+<pre>easyDialog.open({
+  container : {
+    header : '跟随定位',
+    content : '弹出窗口可以跟随某元素绝对定位'
+  },
+  follow : 'demoBtn5',
+  followX : -137,
+  followY : 24
+});
+</pre>
+	<div class="con_right">
+		<p><b>follow：</b>被跟随元素，参数可以是元素的id，也可以是DOM对象。<br>
+			<b>followX：</b>相对于被跟随元素的X轴偏移。<br>
+			<b>followY：</b>相对于被跟随元素的X轴偏移。<br>
+		</p>
+		<a href="javascript:void(0)" class="run" id="J_dialog">运行</a>
+	</div>
+</div>
+
+<div class="code_box">
+<pre>easyDialog.open({
+  container : {
+    header : '跟随定位',
+    content : '弹出窗口可以跟随某元素绝对定位'
+  },
+  follow : 'demoBtn5',
+  followX : -137,
+  followY : 24
+});
+</pre>
+	<div class="con_right">
+		<p><b>follow：</b>被跟随元素，参数可以是元素的id，也可以是DOM对象。<br>
+			<b>followX：</b>相对于被跟随元素的X轴偏移。<br>
+			<b>followY：</b>相对于被跟随元素的X轴偏移。<br>
+		</p>
+		<a href="javascript:void(0)" class="run" id="J_dialog_2">运行</a>
+	</div>
+</div>
+<!-- <div class="ui_dialog_area">
 	<div class="ui_dialog_mod">
 		<div class="hd">
 			<h4 class="hd_t">美肤汇提醒您</h4>
@@ -53,14 +135,89 @@
 			<button class="ui_dialog_cancel" id="J_dialog_cancel">取消</button>
 		</div>
 	</div>
-</div>
+</div> -->
 
 
 <script type="text/javascript" src="mui_lib/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="mui_lib/mui_dialog.js"></script>
 <script type="text/javascript">
 	$(function(){
-		MFH.dialog();
+		// var xx = MFH.scrollbar();
+		// console.log(xx);
+
+		$.dialog({
+			tmpl : {
+				title : '美肤汇提醒您',
+				name_confirm : '是的',
+				name_cancel : '不的'
+			},
+
+			follow : '#J_dialog_2',
+
+			offsets_x : -182,
+			offsets_y : 30,
+
+			width : 400,
+
+			// fixed : false,
+
+			success : function(){
+				console.log('callback_success');
+			},
+
+			// autoclose : 2000,
+
+			callback_close : function(){
+				console.log('callback_close');
+			},
+
+			callback_confirm : function(){
+				console.log('callback_confirm');
+			},
+
+			callback_cancel : function(){
+				console.log('callback_cancel');
+			}
+		});
+
+		$('#J_dialog').live('click', function(e){
+			var new_dialog = new MFH.dialog();
+			new_dialog.create({
+				tmpl : {
+					title : '美肤汇提醒您',
+					name_confirm : '是的',
+					name_cancel : '不的'
+				},
+
+				follow : 'J_dialog_2',
+
+				offsets_x : -182,
+				offsets_y : 30,
+
+				width : 400,
+
+				// fixed : false,
+
+				success : function(){
+					// console.log('callback');
+				},
+
+				autoclose : 10000,
+
+				callback_close : function(){
+					console.log('callback_close');
+				},
+
+				callback_confirm : function(){
+					console.log('callback_confirm');
+				},
+
+				callback_cancel : function(){
+					console.log('callback_cancel');
+				}
+
+			});
+		});
 	});
 </script>
 </body>
