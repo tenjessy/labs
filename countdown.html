@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>countdown</title>
+<style type="text/css">
+	* { padding:0px; margin:0px; font-size:12px; font-family:"Microsoft yahei", Arial; }
+</style>
+</head>
+
+<body>
+	<div id="J_daily_countdown" data-time="1361376000"></div>
+	<div id="J_daily_countdown_2" data-time="1361376000"></div>
+
+<script type="text/javascript" src="mui_lib/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="mui_lib/mui_countdown.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var daily_countdown = new MFH.countdown({
+			elem : $('#J_daily_countdown'),
+			end_time : $('#J_daily_countdown').attr('data-time')
+		});
+
+		$.countdown({
+			elem : $('#J_daily_countdown_2'),
+			end_time : parseInt($('#J_daily_countdown_2').attr('data-time'))
+		});
+	});
+</script>
+</body>
+</html>

@@ -9,7 +9,8 @@
  * 		6、关闭、确定、取消的回调
  * 		7、根据某个元素进行定位
  */
-var GLOBAL = {
+if(!window.GLOBAL) window.GLOBAL = {}
+GLOBAL = {
 	timeout : null,
 
 	/**
@@ -463,7 +464,7 @@ var GLOBAL = {
 			// console.log(opts);
 
 			// 创建模板，并插入到body当中
-			var tmpl = self.tmpl(opts);
+			var tmpl = self.template(opts);
 			$('body').append(tmpl);
 
 			// 执行打开后的callback
@@ -518,7 +519,7 @@ var GLOBAL = {
 
 			// 绑定取消后的callback
 			var $obj_cancel = $('#J_dialog_cancel');
-			if($obj_cancel) {
+			if($obj_cancel[0]) {
 				GLOBAL.addEvent($obj_cancel[0], 'click', function(){
 					self.fn_cancel(opts);
 				});
@@ -561,7 +562,7 @@ var GLOBAL = {
 		 */
 		self.position = function(elem, fixed) {
 			// 优先定位，防止在计算DOM宽度的时候，出现错误
-			elem.css({ 'position' : ie6 ? 'absolute' : fixed ? 'fixed' : 'absolute' });
+			elem.css({ 'position' : GLOBAL.ie6 ? 'absolute' : fixed ? 'fixed' : 'absolute' });
 			
 			var elem_margin_top =  '-' + (elem.height() / 2) + 'px';
 			var elem_margin_left = '-' + (elem.width() / 2) + 'px';
@@ -662,7 +663,7 @@ var GLOBAL = {
 		 * 模板
 		 * @return {[type]} [description]
 		 */
-		self.tmpl = function(args){
+		self.template = function(args){
 			var _this = this;
 			var args = args || {};
 			var title = args.tmpl.title ? '<div class="hd"><h4 class="hd_t">'+ args.tmpl.title +'</h4></div>' : '';
