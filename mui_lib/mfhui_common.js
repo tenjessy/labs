@@ -721,6 +721,7 @@ countdown.prototype = {
 		// console.log(diff_time);
 		if(diff_time < 0) {
 			tmpl = this.template();
+			clearTimeout(time_out);
 		} else {
 			tmpl = this.template({
 				hour : hour,

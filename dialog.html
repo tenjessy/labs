@@ -142,6 +142,7 @@
 <script type="text/javascript" src="mui_lib/mui_dialog.js"></script>
 <script type="text/javascript">
 	$(function(){
+		// alert(navigator.userAgent.toLowerCase());
 		$.dialog({
 			tmpl : {
 				title : '美肤汇提醒您',
@@ -168,34 +169,34 @@
 			}
 		});
 
-		$('#J_dialog').live('click', function(e){
-			var new_dialog = new MFH.dialog();
-			new_dialog.create({
-				tmpl : {
-					title : '美肤汇提醒您',
-					name_confirm : '是的',
-					name_cancel : '不的'
-				},
-				follow : '#J_dialog_2',
-				offsets_x : -182,
-				offsets_y : 30,
-				width : 400,
-				// fixed : false,
-				success : function(){
-					console.log('callback_success');
-				},
-				// autoclose : 2000,
-				callback_close : function(){
-					console.log('callback_close');
-				},
-				callback_confirm : function(){
-					console.log('callback_confirm');
-				},
-				callback_cancel : function(){
-					console.log('callback_cancel');
-				}
-			});
-		});
+		// $('#J_dialog').live('click', function(e){
+		// 	var new_dialog = new MFH.dialog();
+		// 	new_dialog.create({
+		// 		tmpl : {
+		// 			title : '美肤汇提醒您',
+		// 			name_confirm : '是的',
+		// 			name_cancel : '不的'
+		// 		},
+		// 		follow : '#J_dialog_2',
+		// 		offsets_x : -182,
+		// 		offsets_y : 30,
+		// 		width : 400,
+		// 		// fixed : false,
+		// 		success : function(){
+		// 			console.log('callback_success');
+		// 		},
+		// 		// autoclose : 2000,
+		// 		callback_close : function(){
+		// 			console.log('callback_close');
+		// 		},
+		// 		callback_confirm : function(){
+		// 			console.log('callback_confirm');
+		// 		},
+		// 		callback_cancel : function(){
+		// 			console.log('callback_cancel');
+		// 		}
+		// 	});
+		// });
 	});
 </script>
 </body>

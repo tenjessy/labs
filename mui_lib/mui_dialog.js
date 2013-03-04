@@ -9,6 +9,12 @@
  * 		6、关闭、确定、取消的回调
  * 		7、根据某个元素进行定位
  */
+
+if( !window.console ) {
+    var console = {
+        log : function(){}
+    };
+}
 if(!window.GLOBAL) window.GLOBAL = {}
 GLOBAL = {
 	timeout : null,
@@ -401,292 +407,295 @@ GLOBAL = {
 ;;;(function($, jQuery){
 
 	/**
-	 * 弹出层
-	 * 使用方法：
-	 * $.dialog({
-			tmpl : {
-				title : '美肤汇提醒您',
-				name_confirm : '是的',
-				name_cancel : '不的'
-			},
-			follow : '#J_dialog_2',
-			offsets_x : -182,
-			offsets_y : 30,
-			width : 400,
-			success : function(){ console.log('callback_success'); },
-			callback_close : function(){ console.log('callback_close'); },
-			callback_confirm : function(){ console.log('callback_confirm'); },
-			callback_cancel : function(){ console.log('callback_cancel'); }
-		});
-	 * @return {[type]} [description]
-	 */
-	$.dialog = function(){
-		var def = {
-			tmpl : null,				// string / object   弹处层内容的id或内容模板
-			width : 300,				
-			height : 200,				
-			mask : true,				// boolean  		是否添加遮罩层
-			drag : true,				// boolean  		是否绑定拖拽事件
-			fixed : true,				// boolean  		是否静止定位
-			follow : null,				// string / object  是否跟随自定义元素来定位
-			offsets_x : 0,				// number   		相对于自定义元素的X坐标的偏移
-			offsets_y : 0,				// number  			相对于自定义元素的Y坐标的偏移
-			autoclose : 0,				// number			自动关闭弹出层的时间
-			lock : false,				// boolean		   	是否允许ESC键来关闭弹出层
-			success : null,				// function		  	关闭弹出层后执行的回调函数
-			callback_close : null,		// function 		关闭后执行的回调函数
-			callback_confirm : null,	// function 		确认后执行的回调函数
-			callback_cancel : null		// function 		取消后执行的回调函数
-			/** 
-			 *  tmpl为object时的参数格式
-			 *	tmpl : {
-			 *		header : '弹出层标题',
-			 *		content : '弹出层内容',
-			 *		yesText : '确定',			// 确定按钮的文本，默认为‘确定’
-			 *		noText : '取消' 			// 取消按钮的文本，默认为‘取消’
-			 *	}
+		 * 弹出层
+		 * 使用方法：
+		 * $.dialog({
+				tmpl : {
+					title : '美肤汇提醒您',
+					name_confirm : '是的',
+					name_cancel : '不的'
+				},
+				follow : '#J_dialog_2',
+				offsets_x : -182,
+				offsets_y : 30,
+				width : 400,
+				success : function(){ console.log('callback_success'); },
+				callback_close : function(){ console.log('callback_close'); },
+				callback_confirm : function(){ console.log('callback_confirm'); },
+				callback_cancel : function(){ console.log('callback_cancel'); }
+			});
+		 * @return {[type]} [description]
+		 */
+		$.dialog = function(){
+			var def = {
+				tmpl : null,				// string / object   弹处层内容的id或内容模板
+				skin : null,
+				width : 300,				
+				height : 200,				
+				mask : true,				// boolean  		是否添加遮罩层
+				drag : true,				// boolean  		是否绑定拖拽事件
+				fixed : true,				// boolean  		是否静止定位
+				follow : null,				// string / object  是否跟随自定义元素来定位
+				offsets_x : 0,				// number   		相对于自定义元素的X坐标的偏移
+				offsets_y : 0,				// number  			相对于自定义元素的Y坐标的偏移
+				autoclose : 0,				// number			自动关闭弹出层的时间
+				lock : false,				// boolean		   	是否允许ESC键来关闭弹出层
+				success : null,				// function		  	关闭弹出层后执行的回调函数
+				callback_close : null,		// function 		关闭后执行的回调函数
+				callback_confirm : null,	// function 		确认后执行的回调函数
+				callback_cancel : null		// function 		取消后执行的回调函数
+				/** 
+				 *  tmpl为object时的参数格式
+				 *	tmpl : {
+				 *		header : '弹出层标题',
+				 *		content : '弹出层内容',
+				 *		yesText : '确定',			// 确定按钮的文本，默认为‘确定’
+				 *		noText : '取消' 			// 取消按钮的文本，默认为‘取消’
+				 *	}
+				 */
+			};
+			var self = this;
+			var opts = {};
+			var _opts = {};
+
+			if (typeof arguments[0] == 'object' || typeof arguments[1] == 'object') {
+				_opts = $.extend(_opts, (typeof arguments[0] == 'object' ? arguments[0] : arguments[1]));
+			}
+
+			/**
+			 * 初始化
+			 * @return {[type]} [description]
 			 */
-		};
-		var self = this;
-		var opts = {};
-		var _opts = {};
+			self.init = function(){
+				opts = $.extend({}, def, _opts);
+				// console.log(opts);
+				MFH.utils.css('/resources/css/dialog.css?v=' + parseInt(new Date().getTime() / 1000));
 
-		if (typeof arguments[0] == 'object' || typeof arguments[1] == 'object') {
-			_opts = $.extend(_opts, (typeof arguments[0] == 'object' ? arguments[0] : arguments[1]));
-		}
+				// 创建模板，并插入到body当中
+				var tmpl = self.template(opts);
+				$('body').append(tmpl);
 
-		/**
-		 * 初始化
-		 * @return {[type]} [description]
-		 */
-		self.init = function(){
-			opts = $.extend({}, def, _opts);
-			// console.log(opts);
-
-			// 创建模板，并插入到body当中
-			var tmpl = self.template(opts);
-			$('body').append(tmpl);
-
-			// 执行打开后的callback
-			if(typeof opts.success === 'function') {
-				self.success(opts);
-			}
-
-			// 定位
-			var $obj_dialog = $('#J_dialog_area');
-			if(opts.follow) {
-				var $obj_follow = $(opts.follow);
-				var x = opts.offsets_x;
-				var y = opts.offsets_y;
-				self.follow($obj_dialog, $obj_follow, x, y);
-			} else {
-				self.position($obj_dialog, opts.fixed);
-			}
-
-			// 如果有遮罩层
-			if(opts.mask) self.mask();
-
-			// 绑定关闭后的callback
-			var $obj_close = $('#J_dialog_close');
-			if($obj_close[0]) {
-				GLOBAL.addEvent($obj_close[0], 'click', function(){
-					self.fn_close(opts);
-				});
-			}
-
-			// 绑定ESC键关闭弹出层
-			if(!opts.lock) {
-				GLOBAL.addEvent(document, 'keyup', keyEvent);
-			}
-			function keyEvent(e){
-				if(e.keyCode === 27) {
-					self.fn_close(opts);
+				// 执行打开后的callback
+				if(typeof opts.success === 'function') {
+					self.success(opts);
 				}
-			}
 
-			// 绑定自动关闭
-			if(opts.autoclose && typeof opts.autoclose === 'number') {
-				GLOBAL.timeout = setTimeout(function(){ self.fn_close(opts) }, opts.autoclose);
-			}
-
-			// 绑定确定后的callback
-			var $obj_confirm = $('#J_dialog_confirm');
-			if($obj_confirm[0]) {
-				GLOBAL.addEvent($obj_confirm[0], 'click', function(){
-					self.fn_confirm(opts);
-				});
-			}
-
-			// 绑定取消后的callback
-			var $obj_cancel = $('#J_dialog_cancel');
-			if($obj_cancel[0]) {
-				GLOBAL.addEvent($obj_cancel[0], 'click', function(){
-					self.fn_cancel(opts);
-				});
-			}
-
-			return self;
-		}
-
-		/**
-		 * 遮罩
-		 * @return {[type]} [description]
-		 */
-		self.mask = function(){
-			var dom_mask = $('#J_mask');
-
-			var $obj_mask = $('#J_mask');
-			
-			if($obj_mask[0]) {
-				var style = dom_mask.style;
-				if(GLOBAL.ie6){
-					var client_height = $('html, body').height();
-					$obj_mask.css({ 'height' : client_height });
+				// 定位
+				var $obj_dialog = $('#J_dialog_area');
+				if(opts.follow) {
+					var $obj_follow = $(opts.follow);
+					var x = opts.offsets_x;
+					var y = opts.offsets_y;
+					self.follow($obj_dialog, $obj_follow, x, y);
 				} else {
-					$obj_mask.css({
-						'position' : 'fixed',
-						'top' : '0px',
-						'right' : '0px',
-						'bottom' : '0px',
-						'left' : '0px'
+					self.position($obj_dialog, opts.fixed);
+				}
+
+				// 如果有遮罩层
+				if(opts.mask) self.mask();
+
+				// 绑定关闭后的callback
+				var $obj_close = $('#J_dialog_close');
+				if($obj_close[0]) {
+					GLOBAL.addEvent($obj_close[0], 'click', function(){
+						self.fn_close(opts);
 					});
 				}
-			}
-		}
 
-		/**
-		 * 定位
-		 * @param  {[type]} elem  [description]
-		 * @param  {[type]} fixed [description]
-		 * @return {[type]}       [description]
-		 */
-		self.position = function(elem, fixed) {
-			// 优先定位，防止在计算DOM宽度的时候，出现错误
-			elem.css({ 'position' : GLOBAL.ie6 ? 'absolute' : fixed ? 'fixed' : 'absolute' });
-			
-			var elem_margin_top =  '-' + (elem.height() / 2) + 'px';
-			var elem_margin_left = '-' + (elem.width() / 2) + 'px';
-
-			elem.css({
-				'top' : '50%',
-				'left' : '50%',
-				'margin-top' : elem_margin_top,
-				'margin-left' : elem_margin_left
-			});
-		}
-
-		/**
-		 * 跟随定位
-		 * @param  {[type]} elem   [需要定位的元素]
-		 * @param  {[type]} follow [被跟随的目标元素]
-		 * @param  {[type]} x      [x轴的偏移量]
-		 * @param  {[type]} y      [y轴的偏移量]
-		 * @return {[type]}        [description]
-		 */
-		self.follow = function(elem, follow, x, y){
-			var follow_offsets_x = follow.offset().left + x;
-			var follow_offsets_y = follow.offset().top + y;
-
-			// console.log(follow_offsets_x);
-			// console.log(follow_offsets_y);
-
-			elem.css({
-				'position' : 'absolute',
-				'top' : follow_offsets_y,
-				'left' : follow_offsets_x
-			});
-		}
-
-		/**
-		 * 成功后的回调函数
-		 * @param  {[type]} args [description]
-		 * @return {[type]}      [description]
-		 */
-		self.success = function(args) {
-			if(args && typeof args.success === 'function'){
-				args.success();
-			}
-		}
-
-		/**
-		 * 点击dialog里面的《确认》按钮后的callback
-		 * @return {[type]} [description]
-		 */
-		self.fn_confirm = function(args){
-			if(args && typeof args.callback_confirm === 'function'){
-				args.callback_confirm();
-				self.fn_close();
-			}
-		}
-
-		/**
-		 * 点击dialog里面的《取消》按钮后的callback
-		 * @return {[type]} [description]
-		 */
-		self.fn_cancel = function(args){
-			if(args && typeof args.callback_cancel === 'function'){
-				args.callback_cancel();
-				self.fn_close();
-			}
-		}
-
-		/**
-		 * 点击dialog里面的《关闭》按钮后的callback
-		 * @param  {[type]} opts [description]
-		 * @return {[type]}      [description]
-		 */
-		self.fn_close = function(args) {
-			var $obj_dialog = $('#J_dialog_area');
-
-			// 判断DOM是否存在
-			// 防止某些事件的重复执行
-			if($obj_dialog){
-				if(args && typeof args.callback_close === 'function'){
-					args.callback_close();
+				// 绑定ESC键关闭弹出层
+				if(!opts.lock) {
+					GLOBAL.addEvent(document, 'keyup', keyEvent);
+				}
+				function keyEvent(e){
+					if(e.keyCode === 27) {
+						self.fn_close(opts);
+					}
 				}
 
-				// 移除dialog的DOM节点
-				if($obj_dialog[0]) {
-					$obj_dialog.remove();
+				// 绑定自动关闭
+				if(opts.autoclose && typeof opts.autoclose === 'number') {
+					GLOBAL.timeout = setTimeout(function(){ self.fn_close(opts) }, opts.autoclose);
 				}
-				// 移除遮罩层
+
+				// 绑定确定后的callback
+				var $obj_confirm = $('#J_dialog_confirm');
+				if($obj_confirm[0]) {
+					GLOBAL.addEvent($obj_confirm[0], 'click', function(){
+						self.fn_confirm(opts);
+					});
+				}
+
+				// 绑定取消后的callback
+				var $obj_cancel = $('#J_dialog_cancel');
+				if($obj_cancel[0]) {
+					GLOBAL.addEvent($obj_cancel[0], 'click', function(){
+						self.fn_cancel(opts);
+					});
+				}
+
+				return self;
+			}
+
+			/**
+			 * 遮罩
+			 * @return {[type]} [description]
+			 */
+			self.mask = function(){
+				var dom_mask = $('#J_mask');
+
 				var $obj_mask = $('#J_mask');
-				if($obj_mask) {
-					$obj_mask.remove();
+				// alert(!-[1,]&&!window.XMLHttpRequest);
+				if($obj_mask[0]) {
+					var style = dom_mask.style;
+					if(GLOBAL.ie6){
+						var client_height = $('body').height();
+						$obj_mask.css({ 'height' : client_height });
+					} else {
+						$obj_mask.css({
+							'position' : 'fixed',
+							'top' : '0px',
+							'right' : '0px',
+							'bottom' : '0px',
+							'left' : '0px'
+						});
+					}
 				}
 			}
 
-			// clearTimeout(GLOBAL.timeout);
-		}
+			/**
+			 * 定位
+			 * @param  {[type]} elem  [description]
+			 * @param  {[type]} fixed [description]
+			 * @return {[type]}       [description]
+			 */
+			self.position = function(elem, fixed) {
+				// 优先定位，防止在计算DOM宽度的时候，出现错误
+				elem.css({ 'position' : GLOBAL.ie6 ? 'absolute' : fixed ? 'fixed' : 'absolute' });
+				
+				var elem_margin_top =  '-' + (elem.height() / 2) + 'px';
+				var elem_margin_left = '-' + (elem.width() / 2) + 'px';
 
-		/**
-		 * 模板
-		 * @return {[type]} [description]
-		 */
-		self.template = function(args){
-			var _this = this;
-			var args = args || {};
-			var title = args.tmpl.title ? '<div class="hd"><h4 class="hd_t">'+ args.tmpl.title +'</h4></div>' : '';
-			var content = args.tmpl.content ? args.tmpl.content : '<p class="ui_loading"><b class="icon_loading"></b>正在加载，请稍后...</p>';
-			var btn_confirm = typeof args.callback_confirm === 'function' ? '<button class="ui_dialog_confirm" id="J_dialog_confirm">' + (typeof args.tmpl.name_confirm === 'string' ? args.tmpl.name_confirm : '确定') + '</button>' : '';
-			var btn_cancel = typeof args.callback_cancel === 'function' ? '<button class="ui_dialog_cancel" id="J_dialog_cancel">' + (typeof args.tmpl.name_cancel === 'string' ? args.tmpl.name_cancel : '取消') + '</button>' : '';
-			var footer = btn_confirm === '' && btn_cancel === '' ? '' : '<div class="ft">' + btn_confirm + btn_cancel + '</div>';
-			var mask = args.mask ? '<div class="ui_mask" id="J_mask"></div>' : '';
+				elem.css({
+					'top' : '50%',
+					'left' : '50%',
+					'margin-top' : elem_margin_top,
+					'margin-left' : elem_margin_left
+				});
+			}
 
-			var tmpl = [
-				'<div class="ui_dialog_area" id="J_dialog_area">',
-					'<div class="ui_dialog_mod" style="width:' + args.width + 'px; height:' + args.height + 'px">',
-						title,
-						'<div class="bd">' + content + '</div>',
-						footer,
-						'<a href="javascript:void(0);" class="ui_dialog_close" id="J_dialog_close">关闭</a>',
+			/**
+			 * 跟随定位
+			 * @param  {[type]} elem   [需要定位的元素]
+			 * @param  {[type]} follow [被跟随的目标元素]
+			 * @param  {[type]} x      [x轴的偏移量]
+			 * @param  {[type]} y      [y轴的偏移量]
+			 * @return {[type]}        [description]
+			 */
+			self.follow = function(elem, follow, x, y){
+				var follow_offsets_x = follow.offset().left + x;
+				var follow_offsets_y = follow.offset().top + y;
+
+				// console.log(follow_offsets_x);
+				// console.log(follow_offsets_y);
+
+				elem.css({
+					'position' : 'absolute',
+					'top' : follow_offsets_y,
+					'left' : follow_offsets_x
+				});
+			}
+
+			/**
+			 * 成功后的回调函数
+			 * @param  {[type]} args [description]
+			 * @return {[type]}      [description]
+			 */
+			self.success = function(args) {
+				if(args && typeof args.success === 'function'){
+					args.success();
+				}
+			}
+
+			/**
+			 * 点击dialog里面的《确认》按钮后的callback
+			 * @return {[type]} [description]
+			 */
+			self.fn_confirm = function(args){
+				if(args && typeof args.callback_confirm === 'function'){
+					args.callback_confirm();
+					self.fn_close();
+				}
+			}
+
+			/**
+			 * 点击dialog里面的《取消》按钮后的callback
+			 * @return {[type]} [description]
+			 */
+			self.fn_cancel = function(args){
+				if(args && typeof args.callback_cancel === 'function'){
+					args.callback_cancel();
+					self.fn_close();
+				}
+			}
+
+			/**
+			 * 点击dialog里面的《关闭》按钮后的callback
+			 * @param  {[type]} opts [description]
+			 * @return {[type]}      [description]
+			 */
+			self.fn_close = function(args) {
+				var $obj_dialog = $('#J_dialog_area');
+
+				// 判断DOM是否存在
+				// 防止某些事件的重复执行
+				if($obj_dialog){
+					if(args && typeof args.callback_close === 'function'){
+						args.callback_close();
+					}
+
+					// 移除dialog的DOM节点
+					if($obj_dialog[0]) {
+						$obj_dialog.remove();
+					}
+					// 移除遮罩层
+					var $obj_mask = $('#J_mask');
+					if($obj_mask) {
+						$obj_mask.remove();
+					}
+				}
+
+				// clearTimeout(GLOBAL.timeout);
+			}
+
+			/**
+			 * 模板
+			 * @return {[type]} [description]
+			 */
+			self.template = function(args){
+				var _this = this;
+				var args = args || {};
+				var skin = args.skin || '';
+				var title = args.tmpl.title ? '<div class="hd"><h4 class="hd_t">'+ args.tmpl.title +'</h4></div>' : '';
+				var content = args.tmpl.content ? args.tmpl.content : '<p class="ui_loading"><b class="icon_loading"></b>正在加载，请稍后...</p>';
+				var btn_confirm = typeof args.callback_confirm === 'function' ? '<button class="ui_dialog_confirm" id="J_dialog_confirm">' + (typeof args.tmpl.name_confirm === 'string' ? args.tmpl.name_confirm : '确定') + '</button>' : '';
+				var btn_cancel = typeof args.callback_cancel === 'function' ? '<button class="ui_dialog_cancel" id="J_dialog_cancel">' + (typeof args.tmpl.name_cancel === 'string' ? args.tmpl.name_cancel : '取消') + '</button>' : '';
+				var footer = btn_confirm === '' && btn_cancel === '' ? '' : '<div class="ft">' + btn_confirm + btn_cancel + '</div>';
+				var mask = args.mask ? '<div class="ui_mask" id="J_mask"></div>' : '';
+
+				var tmpl = [
+					'<div class="ui_dialog_area" id="J_dialog_area">',
+						'<div class="ui_dialog_mod ' + skin + '" style="width:' + args.width + 'px; height:' + args.height + 'px">',
+							title,
+							'<div class="bd">' + content + '</div>',
+							footer,
+							'<a href="javascript:void(0);" class="ui_dialog_close" id="J_dialog_close">关闭</a>',
+						'</div>',
 					'</div>',
-				'</div>',
-				mask
-			].join('');
-			return tmpl;
-		}
+					mask
+				].join('');
+				return tmpl;
+			}
 
-		return self.init();
-	}
+			return self.init();
+		}
 })(jQuery, document);
