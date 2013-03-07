@@ -9,23 +9,23 @@
 </head>
 
 <body>
-	<div id="J_daily_countdown" data-time="1361376000"></div>
-	<div id="J_daily_countdown_2" data-time="1361376000"></div>
+	<div id="J_daily_countdown_jquery" data-time="1362672000"></div>
+	<div id="J_daily_countdown_javascript" data-time="1362672000"></div>
 
-<script type="text/javascript" src="mui_lib/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="mui_lib/mui_countdown.js"></script>
-<script type="text/javascript">
-	$(function(){
-		var daily_countdown = new MFH.countdown({
-			elem : $('#J_daily_countdown'),
-			end_time : $('#J_daily_countdown').attr('data-time')
-		});
+	<script type="text/javascript" src="js_library/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js_library/widget_countdown.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var daily_countdown = new Widget.countdown({
+				elem : $('#J_daily_countdown_javascript'),
+				end_time : $('#J_daily_countdown_javascript').attr('data-time')
+			});
 
-		$.countdown({
-			elem : $('#J_daily_countdown_2'),
-			end_time : parseInt($('#J_daily_countdown_2').attr('data-time'))
+			$.countdown({
+				elem : $('#J_daily_countdown_jquery'),
+				end_time : parseInt($('#J_daily_countdown_jquery').attr('data-time'))
+			});
 		});
-	});
-</script>
+	</script>
 </body>
 </html>
