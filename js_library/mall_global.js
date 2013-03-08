@@ -60,5 +60,23 @@
 			success: success
 		});
 	}
+	window['MALL']['ajax'] = ajax;
+
+
+	/**
+	 * 一些小工具
+	 * @type {Object}
+	 */
+	var utils = {
+		/**
+		 * URL的解析
+		 * 摘自JavaScript权威指南第六版
+		 * @return {[type]} [description]
+		 */
+		url : function(){
+			
+		}
+	}
+	window['MALL']['utils'] = utils;
 	
 })();
