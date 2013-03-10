@@ -6,9 +6,9 @@
 	/**
 	 * 购物车，功能包括：
 	 * 1.将商品加入到购物车
-	 * 2.从购物车移除某商品
-	 * 3.修改某商品的购买数量
-	 * 4.各种积分、包邮、礼包提示
+	 * 
+	 * 一般情况下，加入购物车的功能全站都可能存在的
+	 * 而在购物车的其它功能，比如删除、更新这些功能，却只有在购物车页面当中存在
 	 *
 	 * 所有操作，均由后台返回json
 	 * 前台拿到json后，根据数据，做输出处理
@@ -32,9 +32,16 @@
 		 * @return {[type]}      [description]
 		 */
 		buy : function(opts){
+			var opts = opts || {};
+			var product_id = opts.product_id;
+			var product_quantity = opts.product_quantity;
+			var product_type = product_type
 			
-		},
+		}
+	}
+	window['MALL']['shopping'] = shopping;
 
+	var cart = {
 		/**
 		 * 从购物车当中移除某商品
 		 * 
@@ -69,8 +76,11 @@
 		 * @param  {[type]} opts [description]
 		 * @return {[type]}      [description]
 		 */
-		tmpl : function(opts){
+		template : function(opts){
+			var tmpl = [
 
+			].join('');
+			return tmpl;
 		}
 	}
 	
