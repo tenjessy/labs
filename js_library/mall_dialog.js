@@ -3,6 +3,7 @@
  * @return {[type]} [description]
  ********************************************************************************/
 ;;;(function($, document){
+	
 	/**
 	 * 弹出层
 	 * 使用方法：
@@ -51,7 +52,7 @@
 			 *	}
 			 */
 		};
-		var dialog = this;
+		var dialog = $.dialog;
 		var opts = {};
 		var _opts = {};
 
@@ -59,11 +60,7 @@
 			_opts = $.extend(_opts, (typeof arguments[0] == 'object' ? arguments[0] : arguments[1]));
 		}
 
-		if(!arguments[0]){
-			alert('xxxxx');
-			return;
-		}
-
+		
 		/**
 		 * 初始化
 		 * @return {[type]} [description]
@@ -71,12 +68,20 @@
 		dialog.init = function(){
 
 			opts = $.extend({}, def, _opts);
+
+			if(opts.action && opts.action == 'close'){
+				dialog.fn_close(opts);
+				return false;	
+			}
 			// console.log(opts);
 			MFH.utils.css('/resources/css/dialog.css?v=' + parseInt(new Date().getTime() / 1000));
 
 			// 创建模板，并插入到body当中
 			var tmpl = dialog.template(opts);
 			$('body').append(tmpl);
+			if(opts.tmpl.content){
+				$('#J_dialog_area .bd').html(opts.tmpl.content);
+			}
 
 			// 执行打开后的callback
 			if(typeof opts.success === 'function') {
@@ -181,7 +186,8 @@
 				'top' : '50%',
 				'left' : '50%',
 				'margin-top' : elem_margin_top,
-				'margin-left' : elem_margin_left
+				'margin-left' : elem_margin_left,
+				'display' : 'block'
 			});
 		}
 
@@ -274,10 +280,13 @@
 		 * @return {[type]} [description]
 		 */
 		dialog.template = function(args){
+			// var temp_content = $('#J_temp_content');
 			var args = args || {};
 			var skin = args.skin || '';
 			var title = args.tmpl && args.tmpl.title ? '<div class="hd"><h4 class="hd_t">'+ args.tmpl.title +'</h4></div>' : '';
-			var content = args.tmpl && args.tmpl.content ? args.tmpl.content : '<p class="ui_loading"><b class="icon_loading"></b>正在加载，请稍后...</p>';
+			// var content = args.tmpl && args.tmpl.content ? args.tmpl.content : '<p class="ui_loading"><b class="icon_loading"></b>正在加载，请稍后...</p>';
+			var content = '<p class="ui_loading"><b class="icon_loading"></b>正在加载，请稍后...</p>';
+
 			var btn_confirm = typeof args.callback_confirm === 'function' ? '<a href="javascript:void(0);" class="ui_dialog_confirm" id="J_dialog_confirm">' + (typeof args.tmpl.name_confirm === 'string' ? args.tmpl.name_confirm : '确定') + '</a>' : '';
 			var btn_cancel = typeof args.callback_cancel === 'function' ? '<a href="javascript:void(0);" class="ui_dialog_cancel" id="J_dialog_cancel">' + (typeof args.tmpl.name_cancel === 'string' ? args.tmpl.name_cancel : '取消') + '</a>' : '';
 			var footer = btn_confirm === '' && btn_cancel === '' ? '' : '<div class="ft">' + btn_confirm + btn_cancel + '</div>';
@@ -287,7 +296,7 @@
 				'<div class="ui_dialog_area" id="J_dialog_area">',
 					'<div class="ui_dialog_mod ' + skin + '" style="width:' + args.width + 'px; height:' + args.height + 'px">',
 						title,
-						'<div class="bd">' + content + '</div>',
+						'<div class="bd">'+ content + '</div>',
 						footer,
 						'<a href="javascript:void(0);" class="ui_dialog_close" id="J_dialog_close">关闭</a>',
 					'</div>',
