@@ -2,50 +2,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>dialog</title>
+<title>test</title>
+
 <style type="text/css">
 	* { padding:0px; margin:0px; font-size:12px; font-family:"Microsoft yahei", Arial; }
-	.ui_dialog_area {
-		z-index:1000; min-width:400px; max-width:1000px; padding:3px; background-color:rgba(0, 0, 0, 0.2);
-		filter:progid:DXImageTransform.Microsoft.gradient(startColorStr=#33000000,endColorStr=#33000000);
-	}
-	.ui_dialog_mod { position:relative; z-index:999; width:400px; height:200px; background-color:#ffffff; border:1px solid #e5e5e5; }
-	.ui_dialog_mod .hd { height:34px; line-height:34px; padding:0px 10px; background-color:#f7f7f7; border-bottom:1px solid #e5e5e5; font-size:14px; }
-	.ui_dialog_mod .hd_t { font-size:14px; color:#666666; }
-	.ui_dialog_mod .bd { padding:10px; }
-	.ui_dialog_mod .ft { position:absolute; bottom:0px; right:0px; padding:10px; font-size:0px; text-align:right; }
-	.ui_dialog_mod .ft .ui_dialog_cancel { margin-left:10px; }
-	.ui_loading { padding:10px 0px; text-align:center; color:#999999; }
-	.ui_loading .icon_loading { display:inline-block; width:18px; height:18px; margin-right:10px; vertical-align:-3px; }
-	.ui_dialog_confirm,
-	.ui_dialog_cancel {
-		height:24px; padding:0px 12px; border:1px solid; font:400 12px/24px "Microsoft yahei", Arial; cursor:pointer;
-		-webkit-border-radius:2px;
-		-moz-border-radius:2px;
-		-o-border-radius:2px;
-		border-radius:2px;
-	}
-	.ui_dialog_confirm {
-		background-color:#4787ed; border-color:#3079ed; color:#fff;
-		background:-webkit-gradient(linear,center bottom,center top,from(#4787ed),to(#4d90fe));
-		background:-moz-linear-gradient(90deg, #4787ed, #4d90fe); 
-	}
-	.ui_dialog_cancel {
-		border-color:#c3c3c3; background-color:#ececec; color:#333;
-		background:-webkit-gradient(linear,center bottom,center top,from(#ececec),to(#f4f4f4));
-		background:-moz-linear-gradient(90deg,#ececec,#f4f4f4);
-	}
-	.ui_dialog_close { position:absolute; top:0px; right:0px; width:34px; height:34px; line-height:34px; color:#999999; text-decoration:none; text-align:center; }
-	.ui_dialog_close:hover { color:#666666; }
-	.ui_mask {
-		position:absolute; top:0px; left:0px; z-index:999; width:100%; height:100%; background:#000000; 
-		opacity:0.1; filter:alpha(opacity=10);
-	}
+	.mod_test { width:400px; min-height:200px; margin:100px auto; border:1px solid #dedede; }
+	.mod_test .hd { padding:10px; background-color:#fafafa; border-bottom:1px solid #dedede; }
+	.mod_test .bd { padding:10px; }
+	
+	p { color:#ff0000!important; }
+	
 </style>
+<link rel="stylesheet" type="text/css" href="css_library/desk_lib.css" />
 </head>
 
-<body style="height:2000px;">
-
-
+<body>
+	<div class="mod_test">
+		<div class="hd">
+			<h3 class="hd_t">这里是标题</h3>
+		</div>
+		<div class="bd">
+			<p class="tips">这里是提示文字</p>
+		</div>
+	</div>
 </body>
 </html>
