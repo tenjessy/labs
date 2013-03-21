@@ -1,16 +1,4 @@
 @charset "utf-8";
-
-/****************************************************************************************
- *				****          ***		***********		***			***					*
- *				*** *        ****		***********		***			***					*
- *				***  *      * ***		***				***			***					*
- *				***   *    *  ***		***				***************					*
- *				***    *  *   ***		*********		***************					*
- *				***     **    ***		*********		***			***					*
- *				***		**    ***		***				***			***					*
- *				***		**	  ***		***				***			***					*
- ****************************************************************************************/
-
 /**
  * portrait----竖屏
  * landscape---横屏
@@ -18,7 +6,7 @@
 
 /* ---------------------------------------- 通用 ---------------------------------------- */
 body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, select, th, td { margin:0px; padding:0px; }
-body { background:#ffffff; -webkit-text-size-adjust:none; font-size:medium; line-height:1.5; font-family:Helvetica, sans-serif; color:#868686; }
+body { background:#ffffff; -webkit-text-size-adjust:none; font-size:medium; line-height:1.5; font-family:Helvetica, sans-serif; }
 button, input, textarea, select { font-size:100%; }
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button {
