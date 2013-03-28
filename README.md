@@ -49,3 +49,26 @@ function success(){
 	console.log('请求成功，已正确返回...');
 }
 ```
+
+##### mall_cart.js
+
+```
+主要处理的功能包括：读取购物车里面的相关商品、删除商品、修改购买数量等逻辑。同时有些功能比较复杂，必要时应该联合后台开发的同学一起联调！
+```
+
+* 读取购物车商品的所有数据
+
+```
+// 一般来说，在购物车当中读取商品信息，要么全部是异步加载过来，要么在后台模板直接输出；
+// 在这里，仅说说异步加载的情况
+
+// 异步发送请求加载购物车数据
+var data
+MALL.ajax({
+	type : 'GET',
+	url : MALL.url.flow,
+	data : data,
+	sendBefore : senBefore,
+	success : success
+});
+```
