@@ -62,13 +62,29 @@ function success(){
 // 一般来说，在购物车当中读取商品信息，要么全部是异步加载过来，要么在后台模板直接输出；
 // 在这里，仅说说异步加载的情况
 
-// 异步发送请求加载购物车数据
-var data
-MALL.ajax({
-	type : 'GET',
-	url : MALL.url.flow,
-	data : data,
-	sendBefore : senBefore,
-	success : success
-});
+var shopping_cart = {
+	// 异步发送请求加载购物车数据
+	goods : function(){
+		var self = shopping_cart;
+		var data = {}
+		MALL.ajax({
+			type : 'GET',
+			url : MALL.url.flow,
+			data : data,
+			sendBefore : senBefore,
+			success : self.goods_callback
+		});
+	},
+
+	// 在处理callback需要注意一些问题：
+	// 购物车商品可能有非常多种类型，并且每种类型的模板可能有一点点不一样。
+	// 所以为了更好处理这些，在这里可以使用js模板进行渲染，比如这里到到jquery-tmpl这个模板；
+	goods_callback : function(response, textStatus, jqXHR){
+		var self = shopping_cart;
+		var response = $.parseJSON(response);
+
+		// 开始根据response这个对象的属性值进行模板处理
+		// 对于一些js模板，可以直接写在页面当中，也可以通过一些其它方式加载进来
+	}
+}
 ```
