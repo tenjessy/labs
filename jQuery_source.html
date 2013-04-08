@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery 解构</title>
+
+</head>
+
+<body>
+<div class="mod mod_a">
+	<div class="hd"></div>
+	<div class="bd"></div>
+</div>
+<div class="mod mod_b">
+	<div class="hd"></div>
+	<div class="bd"></div>
+</div>
+<div class="mod mod_c">
+	<div class="hd"></div>
+	<div class="bd"></div>
+</div>
+<script type="text/javascript">
+	window.onload = function(){
+		// A simple way to check for HTML strings or ID strings
+        // (both of which we optimize for)
+        var quickExpr = /^[^<]*(<[\w\W]+>)[^>]*$|^#([\w-]+)$/;
+        var rtrim = /^(\s|\u00A0)+|(\s|\u00A0)+$/g;
+
+		var jQuery = function(selector, context) {
+			// The jQuery object is actually just the init constructor 'enhanced'
+			return new jQuery.fn.init(selector, context);
+		}
+
+		var trim = function(text){
+			return (text || "").replace(rtrim, "");
+		}        
+
+		jQuery.fn = jQuery.prototype = {
+			init: function(selector, context) {
+				var match, elem, ret, doc;
+				// Handle $(""), $(null), or $(undefined)
+				if (!selector) {
+					return this;
+				}
+ 
+				// Handle $(DOMElement)
+				if (selector.nodeType) {
+					this.context = this[0] = selector;
+					this.length = 1;
+					return this;
+				}
+				
+				// The body element only exists once, optimize finding it
+				if (selector === "body" && !context) {
+					this.context = document;
+					this[0] = document.body;
+					this.selector = "body";
+					this.length = 1;
+					return this;
+				}
+
+				if(typeof selector === 'string'){
+					match = quickExpr.exec(selector);
+					console.log(match);
+				}
+			}
+		}
+
+		var mod = jQuery('mod');
+		// mod.style.background = '#999999';
+
+		var string = '  ddd sss ssdfa  fas';
+		trim(string);
+		console.log(string);
+
+
+	}
+</script>
+</body>
+</html>
