@@ -9,7 +9,7 @@
 	 * 使用方法：
 	 * $.dialog({
 			tmpl : {
-				title : '美肤汇提醒您',
+				title : '网站提醒您',
 				name_confirm : '是的',
 				name_cancel : '不的'
 			},
@@ -74,7 +74,8 @@
 				return false;	
 			}
 			// console.log(opts);
-			MFH.utils.css('/resources/css/dialog.css?v=' + parseInt(new Date().getTime() / 1000));
+			// 异步加载一个dialog的样式表
+			MALL.utils.css('/resources/css/dialog.css?v=' + parseInt(new Date().getTime() / 1000));
 
 			// 创建模板，并插入到body当中
 			var tmpl = dialog.template(opts);

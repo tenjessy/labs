@@ -291,6 +291,21 @@ if(!window.GLOBAL) window.GLOBAL = {}
 			}
 			return args;
 		}
+
+		/**
+		 * 动态加载一个样式文件
+		 * @param  {[type]} href [description]
+		 * @return {[type]}      [description]
+		 */
+		css : function(href){
+			if(!href) return false;
+			var head = document.getElementsByTagName('head')[0];
+			var link =  document.createElement('link');
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = href;
+			head.appendChild(link);
+		}
 	}
 	
 	window['MALL']['utils'] = utils;
