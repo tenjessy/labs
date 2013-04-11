@@ -1,3 +1,4 @@
 *.psd
 /exercise/micro_tmall_lottery
 *xlsx
+.DS_Store
