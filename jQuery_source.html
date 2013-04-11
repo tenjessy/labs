@@ -31,9 +31,30 @@
 			return new jQuery.fn.init(selector, context);
 		}
 
+		// 去除两端的空白字符串
 		var trim = function(text){
 			return (text || "").replace(rtrim, "");
-		}        
+		}
+
+		// 数组合并
+		var merge = function(first, second){
+			var i = first.length,
+				j = 0;
+			if(typeof second.length === 'number') {
+				for(var l = second.length; j < l; j++){
+					first[i++] = second[j]
+				}
+			} else {
+				while(second[j] !== undefined){
+					first[i++] = second[j++]
+				}
+			}
+
+			first.length = i;
+			return first;
+
+		}
+
 
 		jQuery.fn = jQuery.prototype = {
 			init: function(selector, context) {
@@ -70,10 +91,10 @@
 		// mod.style.background = '#999999';
 
 		var string = '  ddd sss ssdfa  fas';
-		trim(string);
-		console.log(string);
+		var string_trim = trim(string);
 
-
+		var test_array = merge([0,1,2], [2,3,4]);
+		console.log(test_array);
 	}
 </script>
 </body>
