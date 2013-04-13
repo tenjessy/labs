@@ -78,12 +78,12 @@
 <script type="text/javascript">
 
 	;;;(function($, document){
-		$.fn.slide = function(){
+		$.fn.slide = function(opts){
 			var def = {
 				control : null,
-				time : 5000,
+				time : 2000,
 				duration : 800,
-				delay : 8000,
+				delay : 1000,
 				auto : true
 			}
 
@@ -163,16 +163,12 @@
 					current_index = index;
 				}
 
-
-				// console.log(current_index);
-				// control.each(function(i){
-				// 	control.eq(i).attr('class', 'item' + i);
-				// });
 				// 每次执行动画的时候，去除control当中的hover的className
 				for(var i = 0; i < control.length; i++){
 					control.eq(i).attr('class', 'item' + i);
 				}
-				var class_name = 'item' + current_index + '_hover';
+				var class_name = opts['control'].replace('$$', current_index);
+				// console.log(class_name);
 				control.eq(current_index).addClass(class_name);
 
 				slide_list.stop(true, true).animate({
@@ -189,7 +185,9 @@
 	})(jQuery, document);
 
 	$(function(){
-		$('#index_slide').slide();
+		$('#index_slide').slide({
+			control : 'item$$_hover'
+		});
 	});
 
 </script>
