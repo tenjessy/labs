@@ -1,0 +1,149 @@
+/**
+ * date:2013-04-13;
+ * explanation:易迅首页;
+ * author:junyong;
+ */
+
+/**
+ * 简单全局reset
+ * @type {[type]}
+ */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, select, th, td { margin:0px; padding:0px; }
+body { background:#ffffff; font-size:12px; line-height:1.5; font-family:'\5FAE\8F6F\96C5\9ED1', '\9ED1\4F53', Tahoma; }
+h1, h2, h3, h4, h5, h6, strong { font-weight:100%; }
+ul, ol { list-style:none; }
+img { border:none; vertical-align:top; }
+a { text-decoration:none; }
+a:hover { text-decoration:underline; }
+/* 清除浮动 */
+.clear{ clear:both; display:block; height:0px; overflow:hidden; font-size:0px; }
+.clearfix:after{ clear:both; display:block; height:0px; overflow:hidden; visibility:hidden; content:""; }
+
+/* 全局使用class */
+.hide { display:none; }
+.wrap_inner { width:1225px; margin:0px auto; }
+
+/*背景*/
+.platform_link .mobile,
+.sns_link .code,
+.sns_link .tqq,
+.sns_link .sina,
+.mini_header .icon_line { background-image:url(http://st.icson.com/51buy_v3/img/index/toolbar_dot.png); background-repeat:no-repeat; }
+
+.mini_header .icon_line { display:inline-block; width:1px; height:8px; vertical-align:1px; background-position:-119px 0px; font-size:0px; }
+
+/**
+ * explanation:迷你导航;
+ */
+.mini_header { background-color:#efefef; color:#666666; }
+.mini_header .wrap_inner { height:30px; }
+.site_menu { float:left; }
+.site_menu li { float:left; }
+.platform_link { padding-top:6px; }
+.platform_link a { float:left; margin-right:8px; text-indent:-999px; overflow:hidden; }
+.platform_link .mobile { width:72px; height:18px; background-position:0px -130px; }
+
+.sns_link { padding-top:7px; }
+.sns_link a { float:left; width:16px; height:16px; margin-right:8px; text-indent:-999px; overflow:hidden; }
+.sns_link .code { background-position:-79px -102px; }
+.sns_link .tqq { background-position:0px -14px; }
+.sns_link .sina { background-position:-18px -14px; }
+
+.outsite_link { padding-top:4px; }
+.outsite_link a { float:left; height:24px; padding:1px 8px 0px 8px; border-top:1px solid #efefef; }
+.outsite_link a.current { background-color:#ffffff; border-top-color:#bebebe; }
+
+.quick_menu { float:right; line-height:30px; }
+.quick_menu li { float:left; padding:0px 4px; }
+
+/**
+ * explanation:头部;
+ */
+.header { background-color:#0645a4; }
+.header_bar { position:relative; width:1225px; height:84px; margin:0px auto; background-color:#ffffff; }
+.search_form .act,
+.header_bar .sub_logo { background-image:url(http://st.icson.com/51buy_v3/img/index/yx_head_dot.png); background-repeat:no-repeat; }
+
+/*logo*/
+.header_bar .logo { float:left; padding:16px 16px 0px 6px; }
+.logo img { width:245px; height:45px; }
+/*人物事迹*/
+.header_bar .deeds { float:left; padding:0px 16px; }
+.deeds img { width:130px; height:60px; }
+/*搜索框*/
+.header_bar .search { float:left; padding-top:16px; }
+.search_form { height:32px; }
+.search_form .input { float:left; width:318px; height:20px; padding:3px 6px; border:3px solid #317ee7; border-right:none; line-height:20px; }
+.search_form .act { float:left; width:81px; height:32px; background-color:#317ee7; background-position:0px -55px; border:none; cursor:pointer; text-indent:-999px; overflow:hidden; }
+.search .keyword { padding:3px 0px; }
+.search .keyword a { margin-left:10px; }
+/*子logo*/
+.header_bar .sub_logo { position:absolute; top:16px; right:0px; width:200px; height:41px; background-position:0px -89px; }
+/*配送地址*/
+.region_change { position:relative; float:left; margin-top:24px; zoom:1; }
+.region_change .title { display:block; }
+.region_change .current_city { position:relative; display:inline-block; padding:0px 4px; color:#317EE7; zoom:1; }
+.region_change .current_city:hover { background-color:#317EE7; text-decoration:none; color:#ffffff; }
+.region_change .icon_arrow { position:relative; top:2px; left:0px; display:inline-block; width:0px; height:0px; margin-left:5px; font-size:0px; border:4px solid #fff; border-top:4px solid #317EE7; overflow:hidden; }
+.region_change .current_city:hover .icon_arrow { top:-2px; border:4px solid #317EE7; border-bottom:4px solid #fff; }
+.region_change a.tip { color:#7e838d; }
+.region_mod {
+	display:none;
+	position:absolute; top:18px; left:24px; width:320px; padding:10px 20px; background-color:#ffffff; border:2px solid #317EE7;
+}
+.region_mod .tips { color:#999999; }
+.region_list .item { padding-bottom:8px; :}
+.region_title { float:left; }
+.region_item_list { overflow:hidden; zoom:1; }
+.region_item_list li { display:inline; }
+.region_item_list a { display:inline-block; padding:2px 5px; }
+.region_item_list a:hover { background-color:#317EE7; text-decoration:none; color:#ffffff; }
+
+/*导航*/
+.main_nav_list .icon_hot,
+.main_category .icon_cate_arrow { background-image:url(http://st.icson.com/51buy_v3/img/index/yx_nav_dot.png); background-repeat:no-repeat; text-indent:-999px; overflow:hidden; }
+
+.main_nav { background-color:#317EE7; }
+.main_nav .wrap_inner { height:30px; }
+/*主分类*/
+.main_category { float:left; width:200px; }
+.main_category .hd_t { position:relative; font-weight:500; zoom:1; }
+.main_category .icon_cate_arrow { position:absolute; top:8px; right:6px; width:13px; height:13px; background-position:-38px -6px; }
+.main_category .hd_t a { display:block; height:30px; padding:0px 14px; border-right:1px solid #ffffff; border-left:1px solid #ffffff; color:#ffffff; font-size:18px; line-height:30px; }
+.main_category .hd_t a:hover { text-decoration:none; }
+/*主导航*/
+.main_nav_list { float:left; }
+.main_nav_list li { position:relative; float:left; text-align:center; zoom:1; }
+.main_nav_list a { display:block; width:98px; border-right:1px solid #317EE7; border-left:1px solid #317EE7; color:#ffffff; font-size:16px; line-height:30px; }
+.main_nav_list a:hover { background-color:#ffbb00; border-left-color:#ffffff; border-right-color:#ffffff; text-decoration:none; color:#ffffff; }
+.main_nav_list .icon_hot { position:absolute; top:-10px; right:10px; width:17px; height:18px; background-position:-85px -1px; }
+/*迷你购物车*/
+.mini_shop_cart { float:right; width:200px; height:30px; }
+
+/**
+ * explanation:首页第一屏;
+ */
+.main_area { }
+
+/*推广产品列表*/
+.pro_product_list { padding:100px; }
+.pro_product_list li { width:268px; height:172px; }
+.pro_product_list .pic { float:left; padding:10px; }
+.pro_product_list .img { width:120px; height:120px; }
+.pro_product_list .info { padding:10px 10px 0px 0px; overflow:hidden; zoom:1; }
+.pro_product_list .price { height:26px; margin-bottom:8px; overflow:hidden; color:#ff0000; }
+.pro_product_list .price_now { font:400 26px/1 Arial; }
+.pro_product_list .rmb { padding-left:4px; font:400 12px/1 Arial; vertical-align:1px; }
+.pro_product_list .name { }
+.pro_product_list .inventory { width:18px; }
+.pro_product_list .act { display:block; width:69px; height:26px; background-color:#DA2121; font-size:14px; line-height:26px; color:#ffffff; text-align:center; }
+.pro_product_list .act:hover { text-decoration:none; color:#ffffff; }
+
+
+
+
+
+
+
+
+
