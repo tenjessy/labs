@@ -139,7 +139,7 @@
 /**
  * explanation:适应多分辨率的情况（一般是通过js来检测屏幕大小的，这里直接使用css3的media）
  */
-@media only screen and (max-width:1280px) {
+@media only screen and (max-width:1179px) {
 	/* 第一屏的主栏 */
 	.first_screen_main { width:565px; }
 
@@ -187,7 +187,6 @@
 	.pro_product_list li { width:281px; height:145px; }
 	.pro_product_list .info { padding:10px 10px 0px 0px; }
 	.pro_product_list .pic { padding:13px 10px 10px 10px; }
-
 }
 
 
