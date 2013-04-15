@@ -32,7 +32,8 @@
 		 * @return {[type]} [description]
 		 */
 		get : function(){
-
+			var data = window.CATEGORY_CONFIG;
+			console.log(data);
 		},
 
 		/**
@@ -53,5 +54,5 @@
  * @return {[type]}       [description]
  */
 $(function(){
-
+	YX.category.get();
 });
