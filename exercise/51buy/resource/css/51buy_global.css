@@ -55,7 +55,7 @@ a:hover { text-decoration:underline; color:#317ee7; }
 .sns_link .sina { background-position:-18px -14px; }
 
 .outsite_link { padding-top:4px; }
-.outsite_link a { float:left; height:24px; padding:1px 8px 0px 8px; border-top:1px solid #efefef; }
+.outsite_link a { float:left; height:22px; padding:3px 8px 0px 8px; border-top:1px solid #efefef; }
 .outsite_link a.current { background-color:#ffffff; border-top-color:#bebebe; }
 
 .quick_menu { float:right; line-height:30px; }
@@ -67,8 +67,7 @@ a:hover { text-decoration:underline; color:#317ee7; }
 /**
  * explanation:头部;
  */
-.header { background-color:#0645a4; }
-.header_bar .wrap_inner { position:relative; height:84px; background-color:#ffffff; z-index:8; }
+.header_bar .wrap_inner { position:relative; height:84px; z-index:8; }
 .search_form .act,
 .header_bar .sub_logo { background-image:url(../img/yx_head_dot.png); background-repeat:no-repeat; }
 .site_notice .icon_speak { background-image:url(../img/yx_brandhead_dot.png); background-repeat:no-repeat; }

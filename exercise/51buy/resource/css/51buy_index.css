@@ -25,7 +25,7 @@
 .slide { position:relative; width:805px; height:327px; margin-bottom:10px; overflow:hidden; }
 .slide_list { position:absolute; z-index:1; width:807px; }
 .slide_list li { height:327px; overflow:hidden; }
-.slide_list a { float:left; display:block; overflow:hidden; background:url(../img/gb/loading_s.gif) no-repeat center center; border-right:1px solid #ffffff; }
+.slide_list a { float:left; display:block; overflow:hidden; background:url(../img/loading_s.gif) no-repeat center center; border-right:1px solid #ffffff; }
 .slide_list .pic_805_327 { width:805px; height:327px; border-right:none; }
 .slide_list .pic_477_327 { width:477px; height:327px; }
 .slide_list .pic_327_163 { width:327px; height:163px; border-bottom:1px solid #ffffff; }
