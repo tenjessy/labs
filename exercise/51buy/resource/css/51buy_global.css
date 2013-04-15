@@ -31,7 +31,7 @@ a:hover { text-decoration:underline; color:#317ee7; }
 .sns_link .code,
 .sns_link .tqq,
 .sns_link .sina,
-.mini_header .icon_line { background-image:url(http://st.icson.com/51buy_v3/img/index/toolbar_dot.png); background-repeat:no-repeat; }
+.mini_header .icon_line { background-image:url(../img/toolbar_dot.png); background-repeat:no-repeat; }
 
 .mini_header .icon_line { display:inline-block; width:1px; height:8px; vertical-align:0px; background-position:-119px 0px; font-size:0px; }
 
@@ -70,8 +70,8 @@ a:hover { text-decoration:underline; color:#317ee7; }
 .header { background-color:#0645a4; }
 .header_bar .wrap_inner { position:relative; height:84px; background-color:#ffffff; z-index:8; }
 .search_form .act,
-.header_bar .sub_logo { background-image:url(http://st.icson.com/51buy_v3/img/index/yx_head_dot.png); background-repeat:no-repeat; }
-.site_notice .icon_speak { background-image:url(http://st.icson.com/51buy_v3/img/index/yx_brandhead_dot.png); background-repeat:no-repeat; }
+.header_bar .sub_logo { background-image:url(../img/yx_head_dot.png); background-repeat:no-repeat; }
+.site_notice .icon_speak { background-image:url(../img/yx_brandhead_dot.png); background-repeat:no-repeat; }
 
 .site_notice { clear:both; padding:5px 0px; overflow:hidden; zoom:1; }
 .site_notice .icon_speak {
@@ -140,7 +140,7 @@ a:hover { text-decoration:underline; color:#317ee7; }
 .mini_shop_cart .icon_cart,
 .cate_menu .icon_arrow,
 .category_all_dropmenu .icon_tab_arrow,
-.cate_menu_concise .icon_arrow { background-image:url(http://st.icson.com/51buy_v3/img/index/yx_nav_dot.png); background-repeat:no-repeat; text-indent:-999px; overflow:hidden; }
+.cate_menu_concise .icon_arrow { background-image:url(../img/yx_nav_dot.png); background-repeat:no-repeat; text-indent:-999px; overflow:hidden; }
 
 .main_nav { background-color:#317ee7; }
 .main_nav .wrap_inner { height:30px; }
