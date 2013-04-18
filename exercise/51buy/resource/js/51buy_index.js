@@ -33,7 +33,6 @@
 		 */
 		get : function(){
 			var data = window.CATEGORY_CONFIG;
-			console.log(data);
 			return data;
 		},
 
@@ -70,29 +69,19 @@
 			var title = opts.title;
 			var url = opts.url;
 			var keyword = opts.keyword;
-			console.log(keyword);
+			if(keyword.length){
+				var keyword_list = category.template_keyword(keyword);
+			}
 			var tmpl;
+			
 			if(type){
-				for(var i = 0; i < keyword.length; i++){
-					var tmpl_keyword = [
-						'<li><a href="#" title="iPad">iPad</a></li>',
-						'<li><a href="#" title="微单">微单</a></li>',
-						'<li><a href="#" title="iPad配件">iPad配件</a></li>',
-						'<li><a href="#" title="存储卡">存储卡</a></li>'
-					].join('');
-				}
 				tmpl = [
 					'<div class="cate_menu">',
 						'<div class="menu_hd">',
 							'<h3 class="title">',
 								'<a href="' + url + '" title="' + title + '">' + title + '</a>',
 							'</h3>',
-							'<ul class="list">',
-								'<li><a href="#" title="合约购机">合约购机</a></li>',
-								'<li><a href="#" title="三星">三星</a></li>',
-								'<li><a href="#" title="诺基亚">诺基亚</a></li>',
-								'<li><a href="#" title="中兴">中兴</a></li>',
-							'</ul>',
+							keyword_list,
 							'<b class="icon_arrow"></b>',
 						'</div>',
 						'<div class="menu_bd"></div>',
@@ -111,6 +100,22 @@
 					'</div>'
 				].join('');
 			}
+			return tmpl;
+		},
+
+		template_keyword : function(keyword){
+			if(!keyword) return false;
+			var tmpl = '';
+			var title = keyword.title;
+			var url = keyword.url;
+			for(var i = 0; i < keyword.length; i++){
+				var title = keyword[i].text;
+				var url = keyword[i].url;
+				tmpl += [
+					'<li><a href="' + url + '" title="' + title + '">' + title + '</a></li>'
+				].join('');
+			}
+			tmpl = '<ul class="list">' + tmpl + '</ul>'
 			return tmpl;
 		}
 	}

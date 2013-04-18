@@ -163,7 +163,7 @@ a:hover { text-decoration:underline; color:#317ee7; }
 .cate_menu .icon_arrow { position:absolute; top:15px; right:15px; width:5px; height:7px; background-position:-53px -12px; }
 .cate_menu .title a { color:#ffffff; }
 .cate_menu .list { height:18px; font-family:arial; overflow:hidden; }
-.cate_menu .list li { display:inline; margin-right:6px; white-space:nowrap; }
+.cate_menu .list li { display:inline; margin-right:8px; white-space:nowrap; }
 .cate_menu .list a { color:#c2d9f8; }
 .cate_menu .menu_bd { position:absolute; z-index:2; display:none; }
 /*分类导航展开后效果*/
