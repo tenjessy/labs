@@ -89,7 +89,6 @@ a:hover { text-decoration:underline; color:#317ee7; }
 .site_notice .notice_list a,
 .site_notice .notice_list a:hover { color:#ffffff; }
 /*头部广告位*/
-/*.header_bar { background:url(../img/1_big20130412192042779639.jpg) no-repeat center top; }*/
 .header_bar .header_ad_bar { height:auto; padding-top:34px; background:none; }
 .ad_header_size { position:relative; z-index:1; }
 .ad_header_size a { display:block; height:132px; }
