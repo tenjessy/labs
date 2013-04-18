@@ -34,6 +34,7 @@
 		get : function(){
 			var data = window.CATEGORY_CONFIG;
 			console.log(data);
+			return data;
 		},
 
 		/**
@@ -41,8 +42,76 @@
 		 * 优先填充标题，让用户能先看到导航的基本内容
 		 * @return {[type]} [description]
 		 */
-		fill : function(){
+		fill : function(opts){
+			var opts = opts || {};
+			var wrap = opts.wrap || '#J_category_menu';
 
+			var data = category.get();
+			var tmpl;
+			for(var i = 0; i < data.length; i++){
+				var type = data[i].highlight;
+				var title = data[i].text;
+				var url = data[i].url;
+				var keyword = data[i].keyword;
+
+				tmpl = category.template({
+					type : type,
+					title : title,
+					url : url,
+					keyword : keyword
+				});
+				$(wrap).append(tmpl);
+			}
+		},
+
+		template : function(opts){
+			if(!opts) return false;
+			var type = opts.type;
+			var title = opts.title;
+			var url = opts.url;
+			var keyword = opts.keyword;
+			console.log(keyword);
+			var tmpl;
+			if(type){
+				for(var i = 0; i < keyword.length; i++){
+					var tmpl_keyword = [
+						'<li><a href="#" title="iPad">iPad</a></li>',
+						'<li><a href="#" title="微单">微单</a></li>',
+						'<li><a href="#" title="iPad配件">iPad配件</a></li>',
+						'<li><a href="#" title="存储卡">存储卡</a></li>'
+					].join('');
+				}
+				tmpl = [
+					'<div class="cate_menu">',
+						'<div class="menu_hd">',
+							'<h3 class="title">',
+								'<a href="' + url + '" title="' + title + '">' + title + '</a>',
+							'</h3>',
+							'<ul class="list">',
+								'<li><a href="#" title="合约购机">合约购机</a></li>',
+								'<li><a href="#" title="三星">三星</a></li>',
+								'<li><a href="#" title="诺基亚">诺基亚</a></li>',
+								'<li><a href="#" title="中兴">中兴</a></li>',
+							'</ul>',
+							'<b class="icon_arrow"></b>',
+						'</div>',
+						'<div class="menu_bd"></div>',
+					'</div>'
+				].join('');
+			} else {
+				tmpl = [
+					'<div class="cate_menu_concise">',
+						'<div class="menu_hd">',
+							'<h3 class="title">',
+								'<a href="' + url + '" title="' + title + '">' + title + '</a>',
+							'</h3>',
+							'<b class="icon_arrow"></b>',
+						'</div>',
+						'<div class="menu_bd"></div>',
+					'</div>'
+				].join('');
+			}
+			return tmpl;
 		}
 	}
 	window.YX.category = category;
@@ -54,5 +123,7 @@
  * @return {[type]}       [description]
  */
 $(function(){
-	YX.category.get();
+	YX.category.fill({
+		wrap : '#J_category_menu'
+	});
 });
