@@ -46,23 +46,81 @@
 			var wrap = opts.wrap || '#J_category_menu';
 
 			var data = category.get();
-			var tmpl;
+			var tmpl = '';
 			for(var i = 0; i < data.length; i++){
 				var type = data[i].highlight;
 				var title = data[i].text;
 				var url = data[i].url;
 				var keyword = data[i].keyword;
 
-				tmpl = category.template({
+				tmpl += category.template({
 					type : type,
 					title : title,
 					url : url,
 					keyword : keyword
 				});
-				$(wrap).append(tmpl);
 			}
+			$(wrap).html(tmpl);
 		},
 
+		/**
+		 * 填充分类菜单的内容
+		 * @param  {[type]} opts [description]
+		 * @return {[type]}      [description]
+		 */
+		fill_content : function(opts){
+			var data = category.get();
+			console.log(data[0]);
+			// 先假设以第一个分类数据进行页面交互的模拟
+			var list = data[0].list;
+			var tmpl = '';
+			var wrap = $('#J_category_menu .cate_menu:first-child .J_sub_cate_menu');
+			for(var i = 0; i < list.length; i++){
+				var title = list[i].text;
+				var keyword = list[i].list;
+				tmpl += category.sub_template({
+					title : title,
+					keyword : keyword
+				});
+			}
+			wrap.html(tmpl);	
+		},
+
+		sub_template : function(opts){
+			if(!opts) return false;
+			var title = opts.title;
+			var keyword = opts.keyword;
+			var keyword_list = category.sub_template_keyword(keyword);
+			var tmpl = [
+				'<div class="sub_cate_item">',
+					'<h4 class="sub_title">' + title + '</h4>',
+					keyword_list,
+				'</div>'
+			].join('');
+			return tmpl;
+		},
+
+		sub_template_keyword : function(keyword){
+			if(!keyword) return false;
+			var tmpl = '';
+			var title = keyword.title;
+			var url = keyword.url;
+			for(var i = 0; i < keyword.length; i++){
+				var title = keyword[i].text;
+				var url = keyword[i].url;
+				tmpl += [
+					'<li><a href="' + url + '" target="_blank" title="' + title + '">' + title + '</a></li>'
+				].join('');
+			}
+			tmpl = '<ul class="sub_list">' + tmpl + '</ul>'
+			return tmpl;
+		},
+
+		/**
+		 * 默认显示的分类菜单模板
+		 * @param  {[type]} opts [description]
+		 * @return {[type]}      [description]
+		 */
 		template : function(opts){
 			if(!opts) return false;
 			var type = opts.type;
@@ -84,7 +142,10 @@
 							keyword_list,
 							'<b class="icon_arrow"></b>',
 						'</div>',
-						'<div class="menu_bd"></div>',
+						'<div class="menu_bd">',
+							'<div class="main J_sub_cate_menu"></div>',
+							'<div class="side J_sub_cate_recom"></div>',
+						'</div>',
 					'</div>'
 				].join('');
 			} else {
@@ -96,13 +157,21 @@
 							'</h3>',
 							'<b class="icon_arrow"></b>',
 						'</div>',
-						'<div class="menu_bd"></div>',
+						'<div class="menu_bd">',
+							'<div class="main J_sub_cate_menu"></div>',
+							'<div class="side J_sub_cate_recom"></div>',
+						'</div>',
 					'</div>'
 				].join('');
 			}
 			return tmpl;
 		},
 
+		/**
+		 * 分类菜单的关键词列表
+		 * @param  {[type]} keyword [description]
+		 * @return {[type]}         [description]
+		 */
 		template_keyword : function(keyword){
 			if(!keyword) return false;
 			var tmpl = '';
@@ -112,7 +181,7 @@
 				var title = keyword[i].text;
 				var url = keyword[i].url;
 				tmpl += [
-					'<li><a href="' + url + '" title="' + title + '">' + title + '</a></li>'
+					'<li><a href="' + url + '" target="_blank" title="' + title + '">' + title + '</a></li>'
 				].join('');
 			}
 			tmpl = '<ul class="list">' + tmpl + '</ul>'
@@ -131,4 +200,7 @@ $(function(){
 	YX.category.fill({
 		wrap : '#J_category_menu'
 	});
+	YX.category.fill_content();
+
+	$('#J_category_menu .cate_menu:first-child .menu_bd').show()
 });

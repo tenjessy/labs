@@ -143,7 +143,7 @@ a:hover { text-decoration:underline; color:#317ee7; }
 .main_nav { background-color:#317ee7; }
 .main_nav .wrap_inner { height:30px; }
 /*主分类*/
-.main_category { position:relative; float:left; width:202px; height:30px; }
+.main_category { position:relative; z-index:100; float:left; width:202px; height:30px; }
 .main_category .hd_t { position:relative; font-weight:500; zoom:1; }
 .main_category .icon_cate_arrow {
 	position:absolute; top:8px; right:6px; width:13px; height:13px; background-position:-38px -6px;
@@ -164,7 +164,19 @@ a:hover { text-decoration:underline; color:#317ee7; }
 .cate_menu .list { height:18px; font-family:arial; overflow:hidden; }
 .cate_menu .list li { display:inline; margin-right:8px; white-space:nowrap; }
 .cate_menu .list a { color:#c2d9f8; }
-.cate_menu .menu_bd { position:absolute; z-index:2; display:none; }
+.cate_menu .menu_bd {
+	position:absolute; z-index:2; top:0px; left:199px; display:none;
+	width:660px; min-height:508px; background:#ffffff url(../img/yx_nav_bg.png) repeat-y left top; border:2px solid #317EE7; border-left:none; line-height:24px;
+	_height:508px;
+}
+.cate_menu .main { float:left; width:430px; padding:10px; }
+.cate_menu .side { float:right; width:190px; padding:10px; }
+.cate_menu .sub_cate_item { padding:6px 0px; border-bottom:1px dashed #e1e1e1; }
+.cate_menu .sub_title { float:left; width:84px; padding:2px 0px; font-size:16px; color:#666666; }
+.cate_menu .sub_list { overflow:hidden; zoom:1; }
+.cate_menu .sub_list li { float:left; margin-right:14px; }
+.cate_menu .sub_list a { display:inline-block; color:#317EE7; }
+.cate_menu .sub_list a:hover { color:#317ee7; }
 /*分类导航展开后效果*/
 .cate_menu_hover { background-color:#ffffff; }
 .cate_menu_hover .title a,
