@@ -175,6 +175,11 @@
 			return tmpl;
 		},
 
+		/**
+		 * 子菜单分类模板
+		 * @param  {[type]} opts [description]
+		 * @return {[type]}      [description]
+		 */
 		sub_template : function(opts){
 			if(!opts) return false;
 			var type = opts.type;
@@ -200,6 +205,11 @@
 			return tmpl;
 		},
 
+		/**
+		 * 子菜单的关键词模板
+		 * @param  {[type]} keyword [description]
+		 * @return {[type]}         [description]
+		 */
 		sub_template_keyword : function(keyword){
 			if(!keyword) return false;
 			var tmpl = '';
