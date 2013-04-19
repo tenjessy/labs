@@ -72,48 +72,35 @@
 			var data = category.get();
 			console.log(data[0]);
 			// 先假设以第一个分类数据进行页面交互的模拟
-			var list = data[0].list;
-			var tmpl = '';
-			var wrap = $('#J_category_menu .cate_menu:first-child .J_sub_cate_menu');
-			for(var i = 0; i < list.length; i++){
-				var title = list[i].text;
-				var keyword = list[i].list;
-				tmpl += category.sub_template({
+			var sub_menu = data[1].list;
+			var recommend = data[1].recommend;
+			var tmpl_main = '';
+			var tmpl_side = '';
+			var wrap_main = $('#J_category_menu .cate_menu:first-child .J_sub_cate_menu');
+			var wrap_side = $('#J_category_menu .cate_menu:first-child .J_sub_cate_recom');
+			for(var l = 0; l < sub_menu.length; l++){
+				var type = 'list';
+				var title = sub_menu[l].text;
+				var keyword = sub_menu[l].list;
+				tmpl_main += category.sub_template({
+					type : type,
 					title : title,
 					keyword : keyword
 				});
 			}
-			wrap.html(tmpl);	
-		},
+			wrap_main.html(tmpl_main);
 
-		sub_template : function(opts){
-			if(!opts) return false;
-			var title = opts.title;
-			var keyword = opts.keyword;
-			var keyword_list = category.sub_template_keyword(keyword);
-			var tmpl = [
-				'<div class="sub_cate_item">',
-					'<h4 class="sub_title">' + title + '</h4>',
-					keyword_list,
-				'</div>'
-			].join('');
-			return tmpl;
-		},
-
-		sub_template_keyword : function(keyword){
-			if(!keyword) return false;
-			var tmpl = '';
-			var title = keyword.title;
-			var url = keyword.url;
-			for(var i = 0; i < keyword.length; i++){
-				var title = keyword[i].text;
-				var url = keyword[i].url;
-				tmpl += [
-					'<li><a href="' + url + '" target="_blank" title="' + title + '">' + title + '</a></li>'
-				].join('');
+			for(var r = 0; r < recommend.length; r++){
+				var type = 'recommend';
+				var title = recommend[r].name;
+				var keyword = recommend[r].list;
+				tmpl_side += category.sub_template({
+					type : type,
+					title : title,
+					keyword : keyword
+				});
 			}
-			tmpl = '<ul class="sub_list">' + tmpl + '</ul>'
-			return tmpl;
+			wrap_side.html(tmpl_side);
 		},
 
 		/**
@@ -185,6 +172,47 @@
 				].join('');
 			}
 			tmpl = '<ul class="list">' + tmpl + '</ul>'
+			return tmpl;
+		},
+
+		sub_template : function(opts){
+			if(!opts) return false;
+			var type = opts.type;
+			var title = opts.title;
+			var keyword = opts.keyword;
+			var keyword_list = category.sub_template_keyword(keyword);
+			var tmpl;
+			if(type == 'list'){
+				tmpl = [
+					'<div class="sub_cate_mod">',
+						'<h4 class="sub_title">' + title + '</h4>',
+						keyword_list,
+					'</div>'
+				].join('');
+			} else if(type == 'recommend'){
+				tmpl = [
+					'<div class="sub_recom_mod">',
+						'<h4 class="sub_title">' + title + '</h4>',
+						keyword_list,
+					'</div>'
+				].join('');
+			}
+			return tmpl;
+		},
+
+		sub_template_keyword : function(keyword){
+			if(!keyword) return false;
+			var tmpl = '';
+			var title = keyword.title;
+			var url = keyword.url;
+			for(var i = 0; i < keyword.length; i++){
+				var title = keyword[i].text;
+				var url = keyword[i].url;
+				tmpl += [
+					'<li><a href="' + url + '" target="_blank" title="' + title + '">' + title + '</a></li>'
+				].join('');
+			}
+			tmpl = '<ul class="sub_list">' + tmpl + '</ul>'
 			return tmpl;
 		}
 	}

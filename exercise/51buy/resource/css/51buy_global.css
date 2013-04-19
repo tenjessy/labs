@@ -155,6 +155,8 @@ a:hover { text-decoration:underline; color:#317ee7; }
 .main_category .hd_t a { display:block; height:30px; padding:0px 14px; border-right:1px solid #ffffff; border-left:1px solid #ffffff; color:#ffffff; font-size:18px; line-height:30px; }
 .main_category .hd_t a:hover { text-decoration:none; }
 /*全部导航分类*/
+.cate_menu .menu_bd,
+.sub_recom_mod .sub_list li { background-image:url(../img/yx_nav_bg.png); background-repeat:no-repeat; }
 .category_all_dropmenu { position:absolute; top:30px; left:1px; width:200px; height:722px; background-color:#317ee7; border-bottom:1px solid #317ee7; }
 .cate_menu { position:relative; height:64px; border-left:1px solid #317ee7; }
 .cate_menu .menu_hd { position:relative; z-index:1; width:175px; padding:10px 12px; border-top:1px solid #468be9; zoom:1; overflow:hidden; }
@@ -166,17 +168,20 @@ a:hover { text-decoration:underline; color:#317ee7; }
 .cate_menu .list a { color:#c2d9f8; }
 .cate_menu .menu_bd {
 	position:absolute; z-index:2; top:0px; left:199px; display:none;
-	width:660px; min-height:508px; background:#ffffff url(../img/yx_nav_bg.png) repeat-y left top; border:2px solid #317EE7; border-left:none; line-height:24px;
+	width:660px; min-height:508px; background-color:#ffffff; background-repeat:repeat-y; background-position:left top; border:2px solid #317EE7; border-left:none; line-height:24px;
 	_height:508px;
 }
 .cate_menu .main { float:left; width:430px; padding:10px; }
 .cate_menu .side { float:right; width:190px; padding:10px; }
-.cate_menu .sub_cate_item { padding:6px 0px; border-bottom:1px dashed #e1e1e1; }
-.cate_menu .sub_title { float:left; width:84px; padding:2px 0px; font-size:16px; color:#666666; }
-.cate_menu .sub_list { overflow:hidden; zoom:1; }
-.cate_menu .sub_list li { float:left; margin-right:14px; }
-.cate_menu .sub_list a { display:inline-block; color:#317EE7; }
-.cate_menu .sub_list a:hover { color:#317ee7; }
+.cate_menu .sub_cate_mod { padding:6px 0px; border-bottom:1px dashed #e1e1e1; }
+.cate_menu .sub_cate_mod:last-child { border-bottom:none; }
+.sub_cate_mod .sub_title { float:left; width:84px; padding:2px 0px; font-weight:400; font-size:16px; color:#666666; }
+.sub_cate_mod .sub_list { overflow:hidden; zoom:1; }
+.sub_cate_mod .sub_list li { float:left; padding-right:14px; }
+.sub_cate_mod .sub_list a { display:inline-block; color:#317EE7; }
+.sub_cate_mod .sub_list a:hover { color:#317ee7; }
+.sub_recom_mod .sub_title { padding:2px 0px; font-weight:400; font-size:16px; color:#666666; }
+.sub_recom_mod .sub_list li { width:180px; padding-left:10px; background-position:-671px 10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 /*分类导航展开后效果*/
 .cate_menu_hover { background-color:#ffffff; }
 .cate_menu_hover .title a,
