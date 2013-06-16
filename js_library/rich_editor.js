@@ -52,6 +52,7 @@ window.onload = function(){
 	iframeDocument.open();
 	iframeDocument.write('<!DOCTYPE html><html><head></head><body style="background-color:#ffffff;"> </body></html>');
 	iframeDocument.close();
+	var switchEditMode = true;
 
 
 	// 获取相应的按钮，并绑定相应的click和change事件
@@ -63,6 +64,32 @@ window.onload = function(){
 			var button = buttons[i];
 			var command = button.getAttribute('title');
 			return function(){
+
+				switch(command){
+					case 'createlink':
+					case 'insertimage':
+						var value = prompt('请输入超链接:', 'http://');
+						iframeDocument.execCommand(command, false, value);
+						break;
+					case 'html':
+						if(switchEditMode){
+							iframe.style.display = 'none';
+							textarea.style.display = 'block';
+							textarea.value = iframeDocument.body.innerHTML;
+							textarea.focus();
+							switchEditMode = false;
+						} else {
+							iframe.style.display = 'block';
+							textarea.style.display = 'none';
+							iframeDocument.body.innerHTML = textarea.value;
+							iframe.contentWindow.focus();
+							switchEditMode = true;
+						}
+						break;
+					defaule:
+						iframeDocument.execCommand(command,false,'');
+						iframe.contentWindow.focus();
+				}
 
 				if(command == 'createlink' || command == 'insertimage'){
 					var value = prompt('请输入超链接:', 'http://');
