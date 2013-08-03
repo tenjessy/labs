@@ -1,8 +1,0 @@
-@charset "utf-8";
-
-/**
- * Date:2013-08-03;
- * Explanation:iOS7 Navitation Bar;
- */
- .ios7-navigation-bar { height:44px; border-bottom:1px solid rgba(0, 0, 0, 0.2); }
- .ios7-navigation-bar .title { text-align:center; font-size:20px; line-height:44px; }
