@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+/**
+ * Date:2013-08-03;
+ * Explanation:iOS7 list;
+ */
+.ios7-list-wrap { padding:0px 15px; }
+.ios7-base-list { font-size:18px; line-height:43px; }
+.ios7-base-list .item { position:relative; border-bottom:1px solid #cccccc; }
+.ios7-base-list .item:active { background-color:#157dfb; color:#ffffff; }
+.ios7-base-list .ios7-ui-arrow { position:absolute; top:50%; right:15px; }
+.ios7-base-list .item:active .ios7-ui-arrow { border-color:#ffffff; }
+
+/**
+ * UI组件
+ */
+/*箭头*/
+.ios7-ui-arrow {
+	display:inline-block; width:7px; height:7px; margin-top:-6px; border:2px solid rgba(0, 0, 0, 0.2); border-left:none; border-bottom:none;
+	-webkit-transform:rotate(45deg);
+}

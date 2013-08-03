@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+/**
+ * Date:2013-08-03;
+ * Explanation:iOS7 Tab Menu;
+ */
+.ios7-tab-wrap { padding:15px 15px; }
+.ios7-tab-menu {
+	border:1px solid #157efb; border-radius:4px; font-size:medium; color:#157efb; text-align:center;
+	display:-webkit-box;
+}
+.ios7-tab-menu .item {
+	display:block; padding:4px 0px;
+	-webkit-box-flex:1;
+}
+.ios7-tab-menu .item:first-child { border-radius:4px 0px 0px 4px; }
+.ios7-tab-menu .item:last-child { border-radius:0px 4px 4px 0px; }
+.ios7-tab-menu .active { background-color:#157efb; color:#ffffff; }
